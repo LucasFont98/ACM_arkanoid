@@ -3,6 +3,7 @@ package codigo;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
+
 /*
  * Autor: Jorge Cisneros
  * 
@@ -36,7 +37,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		}
 		
 	}
-	
+	//este es eo método que mueve la barra
 	public void mouseMoved (MouseEvent evento){
 		barra1.mueveBarra(evento.getX(), getWidth());
 	}
