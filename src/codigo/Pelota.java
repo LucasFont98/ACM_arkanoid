@@ -7,7 +7,6 @@ package codigo;
  */
 import java.awt.Color;
 
-
 import acm.graphics.GObject;
 import acm.graphics.GOval;
 
@@ -48,7 +47,7 @@ public class Pelota extends GOval{
 	 */
 	public void muevete(Arkanoid _arkanoid){
 		//chequea si ha chocado con las paredes izq o derecha
-		if (getX() + getWidth() >= _arkanoid.getWidth() 
+		if (getX() + getWidth() >= _arkanoid.getWidth() - _arkanoid.espacioMenu
 				|| getX()<0){
 			xVelocidad *= -1; 
 		}
@@ -88,28 +87,22 @@ public class Pelota extends GOval{
 				xVelocidad *= -1;
 			}
 			_arkanoid.remove(auxiliar);
+			_arkanoid.marcador.actualizaMarcador(1);
 			noHaChocado = false;
 		}
 		else if (auxiliar instanceof Barra){
-			yVelocidad *= -1;
+
+			double centroBola = getX() + getWidth()/2;
+			if (centroBola > auxiliar.getX() + auxiliar.getWidth()/3 && 
+				centroBola < auxiliar.getX() + 2 * auxiliar.getWidth()/3){
+				yVelocidad = -1;
+			}
+			else {
+				yVelocidad = -0.5;
+			}
 			noHaChocado = false;
 		}
 		return noHaChocado;
 
 	}
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-

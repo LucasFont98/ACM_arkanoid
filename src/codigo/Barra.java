@@ -2,7 +2,6 @@ package codigo;
 
 import java.awt.Color;
 
-
 import acm.graphics.GRect;
 
 /**
@@ -33,7 +32,7 @@ public class Barra extends GRect{
 	 * @param anchoPantalla porque así no tengo que pasar nada más
 	 */
 	public void mueveBarra(int posX, int anchoPantalla){
-		if (posX + getWidth() < anchoPantalla){
+		if (posX + getWidth() < anchoPantalla ){
 			setLocation(posX, getY());
 		}
 	}
@@ -41,9 +40,3 @@ public class Barra extends GRect{
 	
 
 }
-
-
-
-
-
-
