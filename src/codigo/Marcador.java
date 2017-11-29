@@ -16,7 +16,7 @@ public class Marcador extends GRect{
 		setFilled(true);
 		setFillColor(Color.WHITE);
 		// descomenta esto si eres un flojo 
-		//setColor(Color.WHITE);
+		setColor(Color.WHITE);
 		texto.setLabel("0");
 		texto.setFont(new Font("Arial", Font.BOLD, 18));
 	}
@@ -32,10 +32,5 @@ public class Marcador extends GRect{
 		puntuacion += puntos;
 		texto.setLabel("" + puntuacion);
 	}
-	
-	
-	
-	
-	
 
 }
