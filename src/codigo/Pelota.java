@@ -55,11 +55,14 @@ public class Pelota extends GOval{
 		if (this.getY()<0){
 			yVelocidad *= -1; 
 		}
-		if(chequeaColision(getX(), getY(), _arkanoid)){ 									//chequeo la esquina superior izquierda
-			if(chequeaColision(getX()+getWidth(), getY(), _arkanoid)){ 						//chequeo la esquina superior derecha
-				if(chequeaColision(getX(), getY()+getHeight(), _arkanoid)){ 				//chequeo la esquina inferior izquierda
-					if(chequeaColision(getX()+getWidth(), getY()+getHeight(), _arkanoid)){ 	//chequeo la esquina inferior derecha
-
+		if (chequeaColision(getX(), getY(), _arkanoid))//chequeo la esquina superior izquierda
+		{
+			if (chequeaColision(getX() + getWidth(), getY(), _arkanoid))//chequeo la esquina superior derecha
+			{
+				if (chequeaColision(getX(), getY() + getHeight(), _arkanoid))//chequeo la esquina inferior izquierda
+				{
+					if (chequeaColision(getX() + getWidth(), getY() + getHeight(), _arkanoid))//chequeo la esquina inferior derecha
+					{
 
 					}
 				}

@@ -26,8 +26,8 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 	Marcador marcador = new Marcador(20, 40);
 	Vidas marcavida = new Vidas (120,40);
-	GLabel perder = new GLabel ("TU PIERDES!");
-	GLabel ganar = new GLabel ("TU GANAS!");
+	GLabel perder = new GLabel ("Game Over!");
+	GLabel ganar = new GLabel ("You Win :)!");
 
 	public void init(){
 		addMouseListeners();

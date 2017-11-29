@@ -23,8 +23,7 @@ public class Ladrillo extends GRect{
 	 * 
 	 * futuros cambios: que admita número de golpes
 	 */
-	public Ladrillo(double x, double y, double width,
-			double height, Color _color) {
+	public Ladrillo(double x, double y, double width, double height, Color _color) {
 		super(x, y, width, height);
 		setFilled(true);
 		setFillColor(_color);
