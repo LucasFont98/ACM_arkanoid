@@ -52,8 +52,28 @@ public class Pelota extends GOval{
 			xVelocidad *= -1; 
 		}
 		//chequea si ha chocado con el techo
-		if (this.getY()<0){
-			yVelocidad *= -1; 
+		if(this.getY() < 0)
+		{
+			yVelocidad *= -1;
+		}
+		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=3)//Si sucede lo que indica el if ocurrira lo del interior 
+		{
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());//Cambiamos la posicion de la bola al perder vidas
+			_arkanoid.marcavida.actualizaMarcadorVidas(-1);//Restamos 1 vida
+		}
+		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=2)//Si sucede lo que indica el if ocurrira lo del interior 
+		{
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());//Cambiamos la posicion de la bola al perder vidas
+			_arkanoid.marcavida.actualizaMarcadorVidas(-1);//Restamos 1 vida
+		}
+		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=1)//Si sucede lo que indica el if ocurrira lo del interior 
+		{
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());//Cambiamos la posicion de la bola al perder vidas
+			_arkanoid.marcavida.actualizaMarcadorVidas(-1);//Restamos 1 vida
+		}
+		if(Marcador.puntuacion >349 && Marcador.puntuacion <351)//Si sucede lo que indica el if ocurrira lo del interior 
+		{
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());//Colocamos la bola en el centro porque has ganado
 		}
 		if (chequeaColision(getX(), getY(), _arkanoid))//chequeo la esquina superior izquierda
 		{

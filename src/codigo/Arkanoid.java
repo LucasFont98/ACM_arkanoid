@@ -17,7 +17,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 	Pelota pelota1 = new Pelota(10, Color.BLACK);
 	//Pelota pelota2 = new Pelota(30, Color.BLUE);
-	Barra barra1 = new Barra(60, 15, Color.BLUE);
+	Barra barra1 = new Barra(400, 15, Color.BLUE);
 	int anchoLadrillo = 25;
 	int altoLadrillo = 15;
 	int espacioMenu = 200;
@@ -34,6 +34,8 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		setSize(600, 600);
 		GRect lateral = new GRect(3, getHeight());
 		lateral.setFilled(true);
+		dibujaNivel01();
+		
 		add(lateral, getWidth() - espacioMenu - lateral.getWidth() - pelota1.getWidth(), 0);
 		add(pelota1, 0, getHeight()*0.60 - pelota1.getHeight());
 		add(barra1, 0 , getHeight()*0.80);
@@ -41,12 +43,34 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 		marcador.dibuja(this);
 	}
 
-	public void run(){
-		dibujaNivel01();
-		
-		while (true){
+	public void run(){ 
+		//while (true){
+			//pelota1.muevete(this);
+			//pause(5);
+		while(Vidas.vidas >= 1 && Vidas.vidas <= 3)//Mientras suceda lo que indica el while se hara
+		{
 			pelota1.muevete(this);
-			pause(5);
+			pause(0); //Especifica la velocidad
+			if(Marcador.puntuacion >104 && Marcador.puntuacion <106)//Si sucede lo que indica el if ocurrira lo del interior 
+			{
+				pelota1.setLocation(getHeight()/2, getHeight()/2); //Colocamos de nuevo la pelota al cambiar de nivel
+				dibujaNivel02(); //Dibujamos el nivel 2
+				setBackground(Color.WHITE); //Cambiamos el color de fondo 
+				while(Vidas.vidas >= 1 && Vidas.vidas <= 3)//Si sucede lo que indica el if ocurrira lo del interior 
+				{
+					pelota1.muevete(this);
+					pause(0);
+					if(Marcador.puntuacion >244 && Marcador.puntuacion <246)//Si sucede lo que indica el if ocurrira lo del interior
+					{
+						pelota1.setLocation(getHeight()/2, getHeight()/2);
+						add(ganar, getWidth()/2.5, getHeight()/2);//Aparecera un texto en el lugar indicado
+					}
+				}
+			}	
+		}
+		if(Vidas.vidas <= 0)//Si sucede lo que indica el if ocurrira lo del interior
+		{
+			add(perder, getWidth()/2.5, getHeight()/2);//Aparecera un texto en el lugar indicado
 		}
 	}
 
@@ -67,11 +91,26 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 				add(miLadrillo);
 				pause(3);
-			}	
-
+			}
 		}
 	}
-}
+	private void dibujaNivel02(){
+
+		int numeroLadrillos2 =14;
+		for(int j=0; j<10 ;j++){
+			for(int i=0; i< numeroLadrillos2; i++){
+				Ladrillo miLadrillo = new Ladrillo(anchoLadrillo*i,
+						altoLadrillo*j,
+						anchoLadrillo,
+						altoLadrillo,
+						Color.GREEN);
+				add(miLadrillo);
+				pause(3);
+			}
+		}
+
+	}
+	}
 
 
 
