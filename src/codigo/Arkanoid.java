@@ -31,7 +31,7 @@ public class Arkanoid extends acm.program.GraphicsProgram{
 
 	public void init(){
 		addMouseListeners();
-		setSize(600, 600);
+		setSize(600, 600); 
 		GRect lateral = new GRect(3, getHeight());
 		lateral.setFilled(true);
 		dibujaNivel01();
