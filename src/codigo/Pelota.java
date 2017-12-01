@@ -1,9 +1,6 @@
 package codigo;
 /*
- * autor Jorge Cisneros
- * La clase pelota es la que vamos a utilizar para
- * el juego del arkanoid
- * Tiene dos constructores
+ * Author: Lucas Font
  */
 import java.awt.Color;
 
@@ -12,27 +9,16 @@ import acm.graphics.GOval;
 
 public class Pelota extends GOval{
 
-	double xVelocidad = 1; //velocidad de la bola en el eje X
-	double yVelocidad = -1; //velocidad de la bola en el eje Y
+	//Indicamos la velocidad de la bola en el eje X y el eje Y
+	double xVelocidad = 1; 
+	double yVelocidad = -1;
 
-
-	/**
-	 * Este es el constructor básico, que es idéntico
-	 * al de la clase GOval
-	 * @param _ancho
-	 * @param _alto
-	 */
+	
 	public Pelota(double _ancho, double _alto){
 		super(_ancho, _alto);
 	}
 
-	/**
-	 * Este es el constructor dabuti que permite
-	 * pasar el color como parámetro 
-	 * 
-	 * @param _ancho indica el ancho y el alto de la bola
-	 * @param _color
-	 */
+	//Ponemos el tamaño de la bola
 	public Pelota(double _ancho, Color _color){
 		super(_ancho, _ancho);
 		if (_ancho <=0){
@@ -41,40 +27,39 @@ public class Pelota extends GOval{
 		setFillColor(_color);
 		setFilled(true);
 	}
-	/**
-	 * se encarga de mover a la pelota y chequear si ha habido colisiones
-	 * 
-	 */
+	//Hacemos que se mueva la bola y que detecte los choques
 	public void muevete(Arkanoid _arkanoid){
-		//chequea si ha chocado con las paredes izq o derecha
+		//Chequea si ha chocado con las paredes izq o derecha
 		if (getX() + getWidth() >= _arkanoid.getWidth() - _arkanoid.espacioMenu
 				|| getX()<0){
 			xVelocidad *= -1; 
 		}
-		//chequea si ha chocado con el techo
+		//Chequea si ha chocado con el techo
 		if(this.getY() < 0)
 		{
 			yVelocidad *= -1;
 		}
-		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=3)//Si sucede lo que indica el if ocurrira lo del interior 
+		//En estos parametros le indicamos que cada vez que ocurra el if se cambia la posicion de la bola y restamos una vida
+		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=3)
 		{
-			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());//Cambiamos la posicion de la bola al perder vidas
-			_arkanoid.marcavida.actualizaMarcadorVidas(-1);//Restamos 1 vida
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());
+			_arkanoid.marcavida.actualizaMarcadorVidas(-1);
 		}
-		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=2)//Si sucede lo que indica el if ocurrira lo del interior 
+		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=2)
 		{
-			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());//Cambiamos la posicion de la bola al perder vidas
-			_arkanoid.marcavida.actualizaMarcadorVidas(-1);//Restamos 1 vida
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.80 - this.getHeight());
+			_arkanoid.marcavida.actualizaMarcadorVidas(-1);
 		}
-		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=1)//Si sucede lo que indica el if ocurrira lo del interior 
+		if(this.getY() >= _arkanoid.getHeight() && Vidas .vidas >=1)
 		{
-			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());//Cambiamos la posicion de la bola al perder vidas
-			_arkanoid.marcavida.actualizaMarcadorVidas(-1);//Restamos 1 vida
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());
+			_arkanoid.marcavida.actualizaMarcadorVidas(-1);
 		}
-		if(Marcador.puntuacion >349 && Marcador.puntuacion <351)//Si sucede lo que indica el if ocurrira lo del interior 
+		if(Marcador.puntuacion >349 && Marcador.puntuacion <351) 
 		{
-			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());//Colocamos la bola en el centro porque has ganado
+			setLocation(_arkanoid.getWidth()/2, _arkanoid.getHeight()*0.65 - this.getHeight());
 		}
+		//Aqui chequeamos si ha chocado con las esquinas
 		if (chequeaColision(getX(), getY(), _arkanoid))//chequeo la esquina superior izquierda
 		{
 			if (chequeaColision(getX() + getWidth(), getY(), _arkanoid))//chequeo la esquina superior derecha
@@ -89,14 +74,11 @@ public class Pelota extends GOval{
 			}
 		}
 
-		//voy a crear un metodo chequeacolision generico
-		//que sirva para comprobar los choques entre la bola y los ladrillos
-		//y la bola y el cursor
-
 
 		move(xVelocidad, yVelocidad);
 	}
 
+	//Aqui le indicamos si ha chocado con las esquinas de los ladrillos
 	private boolean chequeaColision(double posX, double posY, Arkanoid _arkanoid){
 		boolean noHaChocado = true;
 		GObject auxiliar;
@@ -113,6 +95,7 @@ public class Pelota extends GOval{
 			_arkanoid.marcador.actualizaMarcador(1);
 			noHaChocado = false;
 		}
+		//Aui le decimos si ha chocado con la barra para que rebote
 		else if (auxiliar instanceof Barra){
 
 			double centroBola = getX() + getWidth()/2;
